@@ -154,7 +154,7 @@ def ui_home():
                 'Content-Type': 'application/json'
             }
             response = requests.post(
-                url_for('add_ingredient', _external=True),
+                url_for('add_ingredient'),
                 headers=headers,
                 json={'name': name}
             )
