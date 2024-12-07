@@ -4,7 +4,6 @@ services:
   db:
     image: mariadb:10.5
     env_file: .env
-    platform: linux/arm64
     ports:
       - "3306:3306"
     environment:
