@@ -31,9 +31,9 @@ docker compose up -–build
 11. Wait a few minutes for everything to start, and for the load test to run.
 
 12. Once the logs have died down (and you see the load test results), you can access the app at the following URLs:
-http://165.22.5.19:5000/ui
-http://165.22.5.19:5002/stats
-http://165.22.5.19:5002/dash/ 
+- http://165.22.5.19:5000/ui (To manage your ingredients and generate recipes)
+- http://165.22.5.19:5002/stats (To view the raw stats of service calls and response times)
+- http://165.22.5.19:5002/dash (To view a nice dashboard of service calls and response times)
 
 ## API Overview
 ### Ingredients Service / API
