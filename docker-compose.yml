@@ -4,6 +4,7 @@ services:
   db:
     image: mariadb:10.5
     env_file: .env
+    platform: linux/amd64
     ports:
       - "3306:3306"
     environment:
@@ -26,7 +27,6 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - JWT_SECRET=${JWT_SECRET}
       - SQLALCHEMY_DATABASE_URI=mysql+pymysql://${MYSQL_ROOT_USERNAME}:${MYSQL_ROOT_PASSWORD}@db/ingredients_db
       - OUTGOING_API_KEY=${INGREDIENTS_API_KEY}
       - VALID_INCOMING_API_KEYS=${VALID_API_KEYS_INCOMING_TO_INGREDIENTS}
@@ -43,7 +43,6 @@ services:
     ports:
       - "5002:5002"
     environment:
-      - JWT_SECRET=${JWT_SECRET}
       - SQLALCHEMY_DATABASE_URI=mysql+pymysql://${MYSQL_ROOT_USERNAME}:${MYSQL_ROOT_PASSWORD}@db/stats_db
       - VALID_INCOMING_API_KEYS=${VALID_API_KEYS_INCOMING_TO_STATS}
     depends_on:
@@ -60,7 +59,6 @@ services:
       - "5001:5001"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - JWT_SECRET=${JWT_SECRET}
       - OUTGOING_API_KEY=${RECIPE_API_KEY}
       - VALID_INCOMING_API_KEYS=${VALID_API_KEYS_INCOMING_TO_RECIPE}
     depends_on:
@@ -82,7 +80,7 @@ services:
         condition: service_started
       stats-service:
         condition: service_started
-    command: ["run", "/scripts/loadtest.js"]
+    command: ["run", "/scripts/loadtest.js"] 
     volumes:
       - ./load_tests:/scripts
     environment:
