@@ -1,0 +1,9 @@
+flask
+flask-sqlalchemy
+pymysql
+requests
+jwt
+plotly
+dash
+pandas
+gunicorn

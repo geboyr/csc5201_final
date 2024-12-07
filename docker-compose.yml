@@ -1,0 +1,90 @@
+version: "3.8"
+
+services:
+  db:
+    image: mariadb:10.5
+    env_file: .env
+    platform: linux/arm64
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: my_database
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "-u", "root", "-proot", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  ingredients-service:
+    build:
+      context: ./ingredients_service
+    env_file:
+      - .env
+    container_name: ingredients_service
+    ports:
+      - "5000:5000"
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - SQLALCHEMY_DATABASE_URI=mysql+pymysql://${MYSQL_ROOT_USERNAME}:${MYSQL_ROOT_PASSWORD}@db/ingredients_db
+      - OUTGOING_API_KEY=${INGREDIENTS_API_KEY}
+      - VALID_INCOMING_API_KEYS=${VALID_API_KEYS_INCOMING_TO_INGREDIENTS}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  stats-service:
+    build:
+      context: ./stats_service
+    env_file:
+      - .env
+    container_name: stats_service
+    ports:
+      - "5002:5002"
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - SQLALCHEMY_DATABASE_URI=mysql+pymysql://${MYSQL_ROOT_USERNAME}:${MYSQL_ROOT_PASSWORD}@db/stats_db
+      - VALID_INCOMING_API_KEYS=${VALID_API_KEYS_INCOMING_TO_STATS}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  recipe-service:
+    build:
+      context: ./recipe_service
+    env_file:
+      - .env
+    container_name: recipe_service
+    ports:
+      - "5001:5001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+      - OUTGOING_API_KEY=${RECIPE_API_KEY}
+      - VALID_INCOMING_API_KEYS=${VALID_API_KEYS_INCOMING_TO_RECIPE}
+    depends_on:
+      db:
+        condition: service_healthy
+      ingredients-service:
+        condition: service_started
+
+  loadtest:
+    image: grafana/k6:latest
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+      ingredients-service:
+        condition: service_started
+      recipe-service:
+        condition: service_started
+      stats-service:
+        condition: service_started
+    command: ["run", "/scripts/loadtest.js"]
+    volumes:
+      - ./load_tests:/scripts
+    environment:
+      - OUTGOING_API_KEY=${LOAD_TESTS_API_KEY}
