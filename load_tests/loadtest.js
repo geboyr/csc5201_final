@@ -12,6 +12,11 @@ let addedIngredientIDs = [];
 const headers = __ENV.OUTGOING_API_KEY ? { 'Authorization': `ApiKey ${__ENV.OUTGOING_API_KEY}`, 'Content-Type': 'application/json' }
                               : { 'Content-Type': 'application/json' };
 
+// This runs once before the VUs start executing the default function
+export function setup() {
+  sleep(30); // Global delay before the test starts
+}
+
 export default function () {
   // 1. GET ingredients
   let getRes = http.get('http://ingredients-service:5000/ingredients', { headers });
