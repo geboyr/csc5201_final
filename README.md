@@ -25,12 +25,12 @@ AI Recipe Generator allows you add (and remove) ingredients you have on hand, an
 10. Go into the folder using the command: cd csc5201_final
 
 10. Create a .env file (I like to use nano) and fill in the API keys you have. You’ll copy the contents of env-example.txt and fill it in with the appropriate API keys & passwords. You could probably use root/root for mysql root username & password, and my_user and user for mysql user and password. But get an OpenAI API key, and create your own longer keys for the various services.
-Finally run Docker Compose, and if your application has any environment variables or configurations that need to be updated for the production environment, make sure to update them first. Then, you can run:
-docker compose up -–build
 
-11. Wait a few minutes for everything to start, and for the load test to run.
+12. Then, you can run: docker compose up -–build
 
-12. Once the logs have died down (and you see the load test results), you can access the app at the following URLs:
+13. Wait a few minutes for everything to start, and for the load test to run.
+
+14. Once the logs have died down (and you see the load test results), you can access the app at the following URLs:
 - http://165.22.5.19:5000/ui (To manage your ingredients and generate recipes)
 - http://165.22.5.19:5002/stats (To view the raw stats of service calls and response times)
 - http://165.22.5.19:5002/dash (To view a nice dashboard of service calls and response times)
