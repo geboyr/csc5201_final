@@ -31,9 +31,9 @@ AI Recipe Generator allows you add (and remove) ingredients you have on hand, an
 13. Wait a few minutes for everything to start, and for the load test to run.
 
 14. Once the logs have died down (and you see the load test results), you can access the app at the following URLs:
-- http://<your-droplet-ip-address>:5000/ (To manage your ingredients and generate recipes)
-- http://<your-droplet-ip-address>:5002/stats (To view the raw stats of service calls and response times)
-- http://<your-droplet-ip-address>:5002/dash (To view a nice dashboard of service calls and response times)
+- http://your-droplet-ip-address:5000/ (To manage your ingredients and generate recipes)
+- http://your-droplet-ip-address:5002/stats (To view the raw stats of service calls and response times)
+- http://your-droplet-ip-address:5002/dash (To view a nice dashboard of service calls and response times)
 
 ## API Overview
 ### Ingredients Service / API
