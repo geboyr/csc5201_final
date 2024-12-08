@@ -46,13 +46,13 @@ form_html = """
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Manage Ingredients</title>
+    <title>AI Recipe Generator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
 
   <body class="bg-light">
     <div class="container py-4">
-      <h1 class="mb-4">Manage Ingredients</h1>
+      <h1 class="mb-4">AI Recipe Generator</h1>
 
       <!-- Form to add a new ingredient -->
       <div class="card mb-4">
