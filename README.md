@@ -26,7 +26,7 @@ AI Recipe Generator allows you add (and remove) ingredients you have on hand, an
 
 10. Create a .env file (I like to use nano) and fill in the API keys you have. You’ll copy the contents of env-example.txt and fill it in with the appropriate API keys & passwords. Default user/pw is root/root for mysql root username & password, and my_user and user for mysql user and password. (I would recommend changing those when you have a moment). But you'll also need to get an OpenAI API key, and create your own longer API keys for the various services.
 
-12. Then, you can run: docker compose up -–build
+12. Then, you can run: docker compose up --build (You might need to retype the dash's manually if you are copying/pasting into terminal).
 
 13. Wait a few minutes for everything to start, and for the load test to run.
 
