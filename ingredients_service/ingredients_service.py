@@ -58,7 +58,7 @@ form_html = """
       <div class="card mb-4">
         <div class="card-header">Add a New Ingredient</div>
         <div class="card-body">
-          <form action="/ui" method="POST" class="form-inline">
+          <form action="/" method="POST" class="form-inline">
             <label for="name" class="sr-only">Ingredient Name:</label>
             <input type="text" id="name" name="name" class="form-control mr-2" placeholder="Enter ingredient name" required>
             <button type="submit" class="btn btn-primary">Add Ingredient</button>
@@ -162,7 +162,7 @@ form_html = """
 """
 
 # UI ROUTE
-@app.route('/ui', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def ui_home():
     start_time = time.time()
 
