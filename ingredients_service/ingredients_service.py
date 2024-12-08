@@ -100,6 +100,18 @@ form_html = """
 
       <!-- Area to display the generated recipe -->
       <div id="recipeOutput"></div>
+
+      <!-- Area for links to stats and dashboard -->
+      <div class="card mb-4">
+        <div class="card-header">Admin Links</div>
+        <div class="card-body">
+          <ul>
+            <li><a id="stats-link" href="#">View Stats</a></li>
+            <li><a id="dash-link" href="#">View Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -136,6 +148,14 @@ form_html = """
           document.getElementById('recipeOutput').innerHTML = "<div class='alert alert-danger'>Error generating recipe: " + error + "</div>";
         });
       }
+    </script>
+    <script>
+        // Get the current host (IP or domain)
+        const host = window.location.hostname;
+
+        // Construct the URLs with the same hostname, different port, and specific routes
+        document.getElementById('stats-link').href = `http://${host}:5002/stats`;
+        document.getElementById('dash-link').href = `http://${host}:5002/dash`;
     </script>
   </body>
 </html>
