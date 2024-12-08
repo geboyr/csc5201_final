@@ -24,7 +24,7 @@ AI Recipe Generator allows you add (and remove) ingredients you have on hand, an
 
 10. Go into the folder using the command: cd csc5201_final
 
-10. Create a .env file (I like to use nano) and fill in the API keys you have. You’ll copy the contents of env-example.txt and fill it in with the appropriate API keys & passwords. You could probably use root/root for mysql root username & password, and my_user and user for mysql user and password. But get an OpenAI API key, and create your own longer keys for the various services.
+10. Create a .env file (I like to use nano) and fill in the API keys you have. You’ll copy the contents of env-example.txt and fill it in with the appropriate API keys & passwords. Default user/pw is root/root for mysql root username & password, and my_user and user for mysql user and password. (I would recommend changing those when you have a moment). But you'll also need to get an OpenAI API key, and create your own longer API keys for the various services.
 
 12. Then, you can run: docker compose up -–build
 
