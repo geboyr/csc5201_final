@@ -52,7 +52,7 @@ form_html = """
 
   <body class="bg-light">
     <div class="container py-4">
-      <h1 class="mb-4">AI Recipe Generator</h1>
+      <h1 class="mb-4">What's for dinner?</h1>
 
       <!-- Form to add a new ingredient -->
       <div class="card mb-4">
